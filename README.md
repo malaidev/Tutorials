@@ -1,3 +1,3 @@
 This is a `rune` playground which comes with `rune` pre-installed which you can access using GitPod.
 
-You can follow these [steps](https://www.gitpod.io/docs/quickstart#installing-the-gitpod-browser-extension) to install GitPod Extension on your browser
+You can follow this [link](https://gitpod.io/#github.com/hotg-ai/tutorials) to open GitPod on your browser.

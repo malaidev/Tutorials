@@ -1,0 +1,13 @@
+version: 1
+image: runicos/base
+
+pipeline:
+  random_input:
+    capability: RAND
+    outputs:
+      - type: F32
+        dimensions: [1]
+  serial:
+    out: SERIAL
+    inputs:
+      - random_input
