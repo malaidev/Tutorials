@@ -1,3 +1,7 @@
+You can use below button to open this project directly in GitPod. It will setup a _rune_ playground for you.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/hotg-ai/tutorials/edit/main/lessons/lesson-2/README.md)
+
 The primary way to create a Rune is by using a text file in the `YAML` format, referred to as a Runefile, to declare how a machine learning pipeline is configured. Below you can see a simple Runefile. You can take a quick look then we will go through every component step by step.
 ```yaml
 version: 1

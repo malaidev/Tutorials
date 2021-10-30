@@ -1,3 +1,7 @@
+You can use below button to open this project directly in GitPod. It will setup a _rune_ playground for you.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/hotg-ai/tutorials/edit/main/lessons/lesson-2/README.md)
+
 In this lesson, you will learn two new concepts 
 1) building a rune using ML model
 2) processing the data using `proc-blocks`
