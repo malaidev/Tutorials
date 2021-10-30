@@ -1,4 +1,8 @@
-In this lesson, you will learn two new concepts 1) building a rune using ML model2) processing the data using `proc-blocks`. Before jumping to building a `rune` with the ML model, let's first revise some ML concepts. 
+In this lesson, you will learn two new concepts 
+1) building a rune using ML model
+2) processing the data using `proc-blocks`
+
+Before jumping to building a `rune` with the ML model, let's first revise some ML concepts. 
 
 Machine learning workflows typically have the following steps:
 
