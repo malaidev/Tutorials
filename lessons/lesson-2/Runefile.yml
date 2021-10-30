@@ -1,0 +1,45 @@
+version: 1
+image: runicos/base
+
+pipeline:
+ image:
+   capability: IMAGE
+   outputs:
+     - type: U8
+       dimensions: [1, 96, 96, 1]
+   args:
+     pixel-format: "@PixelFormat::GrayScale"
+     height: 96
+     width: 96
+ person_detection:
+   model: "./person_detection.tflite"
+   inputs:
+     - image
+   outputs:
+     - type: U8
+       dimensions: [1, 1, 1, 3]
+ most_confident_index:
+   proc-block: "hotg-ai/proc-blocks#most_confident_indices"
+   inputs:
+     - person_detection
+   outputs:
+     - type: U32
+       dimensions: [1]
+   args:
+     count: 1
+ label:
+   proc-block: "hotg-ai/proc-blocks#label"
+   inputs:
+     - most_confident_index
+   outputs:
+     - type: UTF8
+       dimensions: [1]
+   args:
+     labels:
+       - unknown
+       - person_prob
+       - not_person_prob
+ serial:
+   out: SERIAL
+   inputs:
+     - label
