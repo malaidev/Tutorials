@@ -1,4 +1,4 @@
-You can use the below button to open this project directly in GitPod. It will set up a _ Rune_ playground for you.
+You can use the below button to open this project directly in GitPod. It will set up a _Rune_ playground for you.
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/hotg-ai/tutorials/edit/main/lessons/lesson-1/README.md)
 
