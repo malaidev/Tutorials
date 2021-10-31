@@ -97,7 +97,7 @@ Outputs:
 Comparing input with the image format: `[batch_size, height, width, channels]`, we can see the model will take a `96 x 96` grayscale image (because the channel is 1). The input image type is `u8`, i.e., all the values will lie between `[0, 255]`. The output is an array of size `[1, 1, 1, 3]`.
 
 ## Capability
-Now, we have got all the information about our model. We will start by setting our first **node** name as the image (you can change it to anything suitable to you) and will define  `capability` to `IMAGE` to take an image as input to our `rune`. We will set the output type to `u8` and dimensions to `[1, 96, 96, 1]` because, as we saw above, this is the format needed by our model. We will set our argument likewidth, height, and format of image in the `args` section. 
+Now, we have got all the information about our model. We will start by setting our first **node** name as the image (you can change it to anything suitable to you) and will define  `capability` to `IMAGE` to take an image as input to our `rune`. We will set the output type to `u8` and dimensions to `[1, 96, 96, 1]` because, as we saw above, this is the format needed by our model. We will set our argument like width, height, and format of image in the `args` section. 
 
 Basically, we process the data until we change it to the format needed by our model. In the later chapters, we will have to include some `proc-blocks` before our model node to change the input data to the format required by our model node. 
 
@@ -208,7 +208,7 @@ rune build Runefile.yml
 ```
 It will create a `lesson-2.rune` for you. 
 
-Test your 'rune` and see the output you are getting. Run the below command In the terminal.
+Test your 'rune` and see the output you are getting. Run the below command in the terminal.
 ```bash
 rune run lesson-2.rune --image image_grayscale.png
 ```

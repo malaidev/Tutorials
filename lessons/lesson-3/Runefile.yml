@@ -1,0 +1,62 @@
+image: runicos/base
+version: 1
+
+pipeline:
+  style:
+    capability: IMAGE
+    outputs:
+      - type: u8
+        dimensions: [1, 256, 256, 3]
+    args:
+      source: 0
+      pixel-format: "@PixelFormat::RGB"
+      width: 256
+      height: 256
+  content_image:
+    capability: IMAGE
+    outputs:
+      - type: u8
+        dimensions: [1, 384, 384, 3]
+    args:
+      source: 1
+      pixel-format: "@PixelFormat::RGB"
+      width: 384
+      height: 384
+
+  normalized_content_image:
+    proc-block: "hotg-ai/proc-blocks#image-normalization"
+    inputs:
+      - content_image
+    outputs:
+      - type: f32
+        dimensions: [1, 384, 384, 3]
+
+  normalized_style_image:
+    proc-block: "hotg-ai/proc-blocks#image-normalization"
+    inputs:
+      - style
+    outputs:
+      - type: f32
+        dimensions: [1, 256, 256, 3]
+
+  style_vector:
+    model: ./style_predict.tflite
+    inputs:
+      - normalized_style_image
+    outputs:
+      - type: f32
+        dimensions: [1, 1, 1, 100]
+
+  style_transform:
+    model: ./style_transform.tflite
+    inputs:
+      - normalized_content_image
+      - style_vector
+    outputs:
+      - type: f32
+        dimensions: [1, 384, 384, 3]
+
+  serial:
+    out: SERIAL
+    inputs:
+      - style_transform
