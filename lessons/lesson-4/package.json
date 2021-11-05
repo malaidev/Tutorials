@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@hotg-ai/rune": "^0.6.0",
+    "@hotg-ai/rune": "^0.6.1",
     "@tensorflow/tfjs-core": "^3.11.0",
     "@tensorflow/tfjs-tflite": "^0.0.1-alpha.7",
     "@testing-library/jest-dom": "^5.11.4",

@@ -1,0 +1,13 @@
+image: runicos/base
+version: 1
+
+pipeline:
+  input:
+    capability: RAW
+    outputs:
+    - type: i32
+      dimensions: [1]
+  output:
+    out: SERIAL
+    inputs:
+    - input
