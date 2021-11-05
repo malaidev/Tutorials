@@ -1209,10 +1209,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hotg-ai/rune@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@hotg-ai/rune/-/rune-0.6.1.tgz#2b9b993d4bbf1ccdcaa6eb45c8bf06e1d22176ad"
-  integrity sha512-hMqFah3DCtRWrZcmMKIjHe9/DrEy+lA+DWJH9TDj+o0SCl/jKi0iK8DoWhUqE1xXNTRbbg9pO52kenOyMCYwZQ==
+"@hotg-ai/rune@^0.6.3":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@hotg-ai/rune/-/rune-0.6.3.tgz#396af5b393887ba906a37395a4c2f9574dc4a9da"
+  integrity sha512-66J4X8MwvrLNumDPQQEU3xwP8rG17j3FHP2cxq94rpM9MlHnWSeIIlFK2/mozFRhh6YxkmYblbUiJhf6aBG8Rg==
   dependencies:
     "@tensorflow/tfjs" "^3.11.0"
     "@tensorflow/tfjs-core" "^3.11.0"
