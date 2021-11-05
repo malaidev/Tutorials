@@ -22,7 +22,7 @@ export default function App() {
     builder()
       .build("/lesson-4.rune")
       .then(r => {
-        console.log("Loaded the Rune");
+        console.log("Loaded the Rune", r);
         setRuntime(r);
       })
       .catch(console.error);
@@ -62,7 +62,7 @@ export default function App() {
                   onChange={e => setQuestion(e.target.value)} />
               </label>
             </div>
-            <input type="submit" value="ASK" />
+            <button onClick={() => submit} >ASK</button>
           </form>
 
           <div>
