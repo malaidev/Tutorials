@@ -1,73 +1,50 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { builder, } from '@hotg-ai/rune';
+import { builder } from '@hotg-ai/rune';
 import { Result } from '@hotg-ai/rune/dist/Builder';
+import { InputDescription, OutputValue, ReadInput } from '@hotg-ai/rune/dist/facade';
 import '@tensorflow/tfjs-tflite/dist/tflite_web_api_cc_simd.js';
-import { ReadInput } from '@hotg-ai/rune/dist/facade';
-import { Tensor } from '@tensorflow/tfjs-core';
+import { Tensor, tensor1d } from '@tensorflow/tfjs-core';
+import logo from './logo.svg';
 
 type RunFunc = (r: ReadInput) => Result;
+const runeURL = "/lesson-4.rune";
 
 export default function App() {
   const [runtime, setRuntime] = useState<RunFunc>();
-  const [paragraph, setParagraph] = useState("");
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [number, setNumber] = useState(42.0);
+  const [result, setResult] = useState("");
 
-  useEffect(() => {
-    console.log("Loading the Rune");
-
-    // Fetch the Rune on startup
-    builder()
-      .build("/lesson-4.rune")
-      .then(r => {
-        console.log("Loaded the Rune");
-        setRuntime(r);
-      })
-      .catch(console.error);
-  }, []);
+  // Initialize the runtime on startup
+  useEffect(() => init(setRuntime), []);
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
-    console.log("Clicked the ASK button", { runtime, paragraph, question, answer });
     e.preventDefault();
-    if (!runtime) {
-      return;
-    }
+    if (!runtime) { return; }
 
-    console.log("Running the Rune");
-    const result = runtime(input => generateInput(question, paragraph));
-    const [textOutput] = result.outputs;
-    setAnswer(textOutput.value);
+    const result = evaluate(runtime, number);
+    setResult(JSON.stringify(result));
   };
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
         <div>
           <form onSubmit={submit}>
             <div>
               <label>
-                Paragraph:
-                <textarea maxLength={1024} value={paragraph} rows={3}
-                  onChange={e => setParagraph(e.target.value)} />
+                Number:
+                <input type="number" value={number}
+                  onChange={e => setNumber(parseInt(e.target.value))} />
               </label>
             </div>
-            <div>
-              <label>
-                Question:
-                <input type="text" maxLength={256} value={question}
-                  onChange={e => setQuestion(e.target.value)} />
-              </label>
-            </div>
-            <input type="submit" value="ASK" />
+            <input type="submit" value="Calculate" disabled={!runtime} />
           </form>
 
           <div>
-            <h3>Answer</h3>
-            <p>{answer}</p>
+            <h3>Result</h3>
+            <pre><code className="result">{result}</code></pre>
           </div>
         </div>
       </header>
@@ -75,7 +52,27 @@ export default function App() {
   );
 }
 
-function generateInput(question: string, paragraph: string): Tensor {
-  throw new Error('Function not implemented.');
+function generateInput(input: InputDescription, number: number): Tensor {
+  console.log("Generating", input);
+  return tensor1d([number], "int32");
 }
 
+function init(setRuntime: React.Dispatch<React.SetStateAction<RunFunc | undefined>>) {
+  console.log("Loading the Rune");
+
+  builder()
+    .build(runeURL)
+    .then(r => {
+      console.log("Loaded the Rune");
+      setRuntime(() => r);
+    })
+    .catch(console.error);
+}
+
+function evaluate(runtime: RunFunc, angle: number): OutputValue[] {
+  console.log("Running the Rune");
+  const { outputs } = runtime(input => generateInput(input, angle));
+
+  console.log("Result:", outputs);
+  return outputs;
+}
