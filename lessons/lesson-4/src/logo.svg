@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="608px" height="521px" viewBox="0 0 608 521" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Untitled 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="44.9254525%" y1="38.8135593%" x2="49.0639184%" y2="81.6949153%" id="linearGradient-1">
+            <stop stop-color="#6100FF" stop-opacity="0.47" offset="0.423007%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="62.5336927%" y1="59.0836851%" x2="57.1428571%" y2="48.1518043%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.5301637%" y1="24.2372881%" x2="57.4060615%" y2="36.6101695%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.65625" offset="51.0417%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo" transform="translate(-315.000000, 1.000000)">
+            <polygon id="Path" stroke="#FF60EF" points="622.783 519 315 341.09 622.783 164 924 341.09"></polygon>
+            <polygon id="Path" stroke-opacity="0.5" stroke="#FF60EF" points="624.217 603 182 347.411 624.217 93 1057 347.411"></polygon>
+            <polygon id="Path" stroke-opacity="0.2" stroke="#FF60EF" points="626.179 722 0 360.166 626.179 0 1239 360.166"></polygon>
+            <polygon id="Path" fill-opacity="0.5" fill="#6100FF" fill-rule="nonzero" points="620 243.5 432.5 135 620 27 803.5 135"></polygon>
+            <polygon id="Path" fill-opacity="0.5" fill="#6100FF" fill-rule="nonzero" points="620 454.5 432.5 346 620 238 803.5 346"></polygon>
+            <path d="M438.5,349 L615.5,245 M799.5,349 L624,245" id="Shape" stroke="#6100FF" stroke-width="11"></path>
+            <polygon id="Path" stroke="#6100FF" stroke-width="11" stroke-linejoin="round" points="437.5 348.34 437.5 138.19 618.993 34.3409 799.5 138.181 799.5 348.348 618.993 454.13"></polygon>
+            <polygon id="Path" fill="#FF00E5" fill-rule="nonzero" points="525.5 324.5 525.5 216.5 618.5 270 618.5 377.5"></polygon>
+            <polygon id="Path" fill="#FF00E5" fill-rule="nonzero" points="711 325.5 711 217.5 618 271 618 378.5"></polygon>
+            <line x1="620.5" y1="178" x2="618.5" y2="37" id="Path" stroke="#6100FF" stroke-width="11"></line>
+            <polygon id="Path" fill="#FF60EF" fill-rule="nonzero" points="619 164 525.5 217.5 619 270.5 711 217.5"></polygon>
+            <polygon id="Path" fill-opacity="0.45" fill="#6100FF" fill-rule="nonzero" opacity="0.5" points="620 247 438.5 141 438.5 347.5 616.5 453.5"></polygon>
+            <polygon id="Path" fill="url(#linearGradient-1)" fill-rule="nonzero" opacity="0.5" points="614 249.5 442.5 150 442.5 345 614 445"></polygon>
+            <polygon id="Path" fill-opacity="0.2" fill="#6100FF" fill-rule="nonzero" opacity="0.5" points="620.5 246.17 797.5 140 797.5 346.83 623.913 453"></polygon>
+            <polygon id="Path" fill-opacity="0.5" fill="url(#linearGradient-2)" fill-rule="nonzero" points="620 243.5 432.5 135 620 27 803.5 135"></polygon>
+            <polygon id="Path" fill="#AF7EFF" fill-rule="nonzero" opacity="0.5" points="625 250.5 794 148.5 794 344.5 625 444.5"></polygon>
+            <polygon id="Path" fill="url(#linearGradient-3)" fill-rule="nonzero" opacity="0.5" points="625.5 250 794 149 794 345.5 625.5 444"></polygon>
+            <line x1="619.5" y1="453" x2="619.5" y2="244" id="Path" stroke="#6100FF" stroke-width="11"></line>
+            <polyline id="Path" stroke="#6100FF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" points="439 142 620 246.5 799.5 139"></polyline>
+        </g>
+    </g>
+</svg>
