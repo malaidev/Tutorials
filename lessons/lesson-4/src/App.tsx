@@ -1,9 +1,6 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import './App.css';
-import { builder } from '@hotg-ai/rune';
-import { Result } from '@hotg-ai/rune/dist/Builder';
-import { InputDescription, OutputValue, ReadInput } from '@hotg-ai/rune/dist/facade';
-import '@tensorflow/tfjs-tflite/dist/tflite_web_api_cc_simd.js';
+import { builder, InputDescription, OutputValue, ReadInput, Result } from '@hotg-ai/rune';
 import { Tensor, tensor1d } from '@tensorflow/tfjs-core';
 import logo from './logo.svg';
 
@@ -12,7 +9,7 @@ const runeURL = "/lesson-4.rune";
 
 export default function App() {
   const [runtime, setRuntime] = useState<RunFunc>();
-  const [number, setNumber] = useState(42.0);
+  const [number, setNumber] = useState(65.0);
   const [result, setResult] = useState("");
 
   // Initialize the runtime on startup
@@ -44,17 +41,12 @@ export default function App() {
 
           <div>
             <h3>Result</h3>
-            <pre><code className="result">{result}</code></pre>
+            <pre><code>{result}</code></pre>
           </div>
         </div>
       </header>
     </div>
   );
-}
-
-function generateInput(input: InputDescription, number: number): Tensor {
-  console.log("Generating", input);
-  return tensor1d([number], "int32");
 }
 
 function init(setRuntime: React.Dispatch<React.SetStateAction<RunFunc | undefined>>) {
@@ -75,4 +67,9 @@ function evaluate(runtime: RunFunc, angle: number): OutputValue[] {
 
   console.log("Result:", outputs);
   return outputs;
+}
+
+function generateInput(input: InputDescription, number: number): Tensor {
+  console.log("Generating", input);
+  return tensor1d([number], "int32");
 }
