@@ -5,8 +5,8 @@ pipeline:
   random_input:
     capability: RAND
     outputs:
-      - type: F32
-        dimensions: [1]
+      - type: u8
+        dimensions: [4]
   serial:
     out: SERIAL
     inputs:

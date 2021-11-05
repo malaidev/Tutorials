@@ -1,3 +1,5 @@
+# Lesson 2 - Machine Learning and Processing Blocks
+
 You can use below button to open this project directly in GitPod. It will setup a _rune_ playground for you.
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/hotg-ai/tutorials/edit/main/lessons/lesson-2/README.md)
