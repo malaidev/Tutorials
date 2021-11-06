@@ -80,7 +80,7 @@ Excited to test your first `rune` and see the output you are getting. Run the be
 ```bash
 rune run lesson-1.rune
 ```
-You will get a random number every time you will run the `Rune run lesson-1.rune` command. 
+You will get a random number every time you will run the `rune run lesson-1.rune` command. 
 
 Did you have fun building your first `rune`? Next, we will build a `rune`  using an ML model.
 
