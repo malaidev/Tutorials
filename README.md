@@ -44,3 +44,10 @@ access using GitPod.
 You can click on the below button to open GitPod on your browser.
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/hotg-ai/tutorials)
+
+## Loading your Runes on the Mobile App
+
+Consider getting the Rune app and using `rune-serve {your-rune}.rune` to load your Rune on the phone!!!
+
+1. [iOS](https://apps.apple.com/us/app/runic-by-hotg-ai/id1550831458)
+2. [Android](https://play.google.com/store/apps/details?id=ai.hotg.runicapp&hl=en_US&gl=US)
