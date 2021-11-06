@@ -1,10 +1,17 @@
-# Adding wordlist and Proc-blocks.
-
+# Lesson 6 - Resources
 
 ## Adding a wordlist in the Runefile
 
-In lesson-2, we look at how to manually add [labels](https://github.com/hotg-ai/tutorials/blob/16ac4c7f0c7e14435fe71dbad37a5534f15ea6dd/lessons/lesson-2/Runefile.yml#L38) in the `args` property of the [label ](https://github.com/hotg-ai/proc-blocks/tree/master/label) proc-block. This will be a cumbersome process if we have a large number of labels ( [Landmark model](https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_north_america_V1/1) has 100k labels). Instead of manually adding all those labels in the Runefile, we can provide a path to the `txt, csv` files using a `wordlist`
-To do so, we add `resources` outside the ML pipeline in the Runefile.
+In lesson-2, we look at how to manually add [labels][labels] in the `args`
+property of [the `hotg-ai/proc-blocks@label` proc-block][label-pb]. This will be
+a cumbersome process if we have a large number of labels (e.g. the [Landmark
+model][landmark] has 100k labels).
+
+Instead of manually adding all those labels in the Runefile, we can provide a
+path to the `txt` or `csv` files using a resource.
+
+Resources are declared under the Runefile's `resources` property.
+
 ```yaml
 version: 1
 image: runicos/base
@@ -48,7 +55,7 @@ pipeline:
    out: SERIAL
    inputs:
      - label
-    
+
 resources:             #  <---------------
   WORD_LIST:
     path: ./label.txt
@@ -57,11 +64,15 @@ resources:             #  <---------------
 
 ## Proc-blocks
 
-The processing block is used to process your data by transforming it from one form to another. We have a list of them over [here](https://github.com/hotg-ai/proc-blocks). You can also create your own proc-block if you need one, or let us know we can help you make one. 
+The processing block is used to process your data by transforming it from one
+form to another. We have a list of them over [here][proc-blocks]. You can also
+create your own proc-block if you need one, or let us know we can help you make
+one.
 
 ### 1. argmax
 
-It returns indices of the max element of the array.
+This proc-block returns indices of the max element of the array.
+
 ```yaml
 image: runicos/base
 version: 1
@@ -85,62 +96,89 @@ pipeline:
       - random_input
       - argmax
 ```
-E.g. I got this output after running rune build from the above Runefile. As we can see 2nd index has largest value.
+
+E.g. I got this output after running rune build from the above Runefile. As we
+can see 2nd index has largest value.
+
 ```
-random_input: {"type_name":"f32","channel":1,"elements":[-5.7317625e 28, -1.5026809e14, 3.0563458e26, 8.577695e22, 5.0970436e-17],"dimensions":[5]};
-argmax: {"type_name":"u32","channel":1,"elements":[2],"dimensions":[1]}
+random_input: {
+  "type_name":"f32",
+  "channel":1,
+  "elements":[-5.7317625e 28, -1.5026809e14, 3.0563458e26, 8.577695e22, 5.0970436e-17],
+  "dimensions":[5]
+}
+argmax: {
+  "type_name":"u32",
+  "channel":1,
+  "elements":[2],
+  "dimensions":[1]
+}
 ```
-It takes only type `f32` tensor as input and give back `u32` tensor as output. This proc-block get used in the [BERT rune](https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/nlp/bert/Runefile.yml#L48).
+
+It takes only type `f32` tensor as input and give back `u32` tensor as output.
+This proc-block get used in the [BERT rune][bert].
 
 ### 2. audio_float_conversion
 
-Many audio models take in an input of f32. This proc-block convert our input from an i16 data type to a floating-point value.
+Many audio models take in an input of `f32`. This proc-block convert our input
+from an `i16` data type to a floating-point value.
 
-This proc-block used in the [YAMNET rune](https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/audio/yamnet/Runefile.yml#L13). You can find more details on this in our [article](https://tinyverse.substack.com/p/rune-ifying-audio-models).
+This proc-block used in the [YAMNET rune][yamnet]. You can find more details on
+this in our [article][audio-article].
 
-### 3.  fft
+### 3. fft
 
-This proc-block converts a signal from its original domain (often time or space) to a representation in the frequency domain.
+This proc-block converts a signal from its original domain (often time or space)
+to a representation in the frequency domain.
 
-This proc-block is used in the [microspeech rune](https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/microspeech/Runefile.yml#L15). You can find more detail in our [article](https://tinyverse.substack.com/p/processing-blocks-in-a-machine-learning).
+This proc-block is used in [the `microspeech` rune][microspeech]. You can find
+more detail in our [article][pb-in-ml].
 
 ### 4. image-normalization
 
-We saw this proc-block in lesson-3. It transform our u8 type to f32 and normalize the image matrix in range [0, 1].
+We saw this proc-block in lesson-3. It transform our `u8` type to `f32` and
+normalize the image matrix in range `[0, 1]`.
 
 ### 5. label
 
-We saw this proc-block in lesson-2. A proc block which, when given a set of indices, will return their associated labels.
+We saw this proc-block in lesson-2. A proc block which, when given a set of
+indices, will return their associated labels.
 
 ### 6. modulo
 
-As the same suggest, it returns the remainder of a division, after one number is divided by another. 
+As the same suggest, it returns the remainder of a division, after one number is
+divided by another.
 
-This proc-block is used in the [sine rune](https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/sine/Runefile.yml#L12).
+This proc-block is used in [the `sine` rune][sine].
 
 ### 7. most_confident_indices.
 
-We saw this proc-block in lesson-2. A proc block which, when given a list of confidences, will return the indices of the top N most confident values.
+We saw this proc-block in lesson-2. A proc block which, when given a list of
+confidences, will return the indices of the top N most confident values.
 
 ### 8. noise-filtering
 
 This proc-block perform a couple of functions:
+
 - Reduces noise within each frequency bin (channel)
 - Applies a gain control algorithm to each frequency bin (channel)
 - Applies log2 function and scales the output.
 
-This proc-block is used in the [microspeech rune](https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/microspeech/Runefile.yml#L24). You can find more detail in our [article](https://tinyverse.substack.com/p/processing-blocks-in-a-machine-learning).
+This proc-block is used in the [microspeech rune][microspeech-noise]. You can
+find more detail in our
+[article][pb-in-ml].
 
 ### 9. normalize
 
-This proc-block normalize the input to the range `[0, 1].
+This proc-block normalize the input to the range `[0, 1]`.
 
-This proc-block is used in our [gesture rune](https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/gesture/Runefile.yml#L16).
+This proc-block is used in [the `gesture` rune][gesture].
 
 ### 10. parse
 
- A proc block which can parse a string to numbers. This proc-block could be helpful in doing non-ML tasks.
- 
+ A proc block which can parse a string to numbers. This proc-block could be
+ helpful in doing non-ML tasks.
+
  ```yaml
 image: runicos/base
 version: 1
@@ -165,7 +203,7 @@ pipeline:
     outputs:
         - type: u32
           dimensions: [5]
-  word_list: 
+  word_list:
     proc-block: "hotg-ai/proc-blocks#label"
     inputs:
       - parse
@@ -174,7 +212,7 @@ pipeline:
         dimensions: [5]
     args:
       labels:
-        - zero        
+        - zero
         - one
         - two
         - three
@@ -190,33 +228,44 @@ pipeline:
     inputs:
       - word_list
 ```
-After building a rune using above Runefile run `rune run test.rune --raw input.txt`, where input .txt contains `1 2 3 4 5`. You will get this as output.
+
+After building a rune using above Runefile run `rune run test.rune --raw
+input.txt`, where input .txt contains `1 2 3 4 5`. You will get this as output.
+
 ```
 {"type_name":"utf8","channel":1,"elements":["one","two","three","four","five"],"dimensions":[5]}
 ```
-P.S. Keep capability dimension a bit a bit larger rune will automatically adjust it.
+
+P.S. Keep capability dimension a bit a bit larger rune will automatically adjust
+it.
 
 ### 11. segment_output
 
-This proc-block is useful in image segmentation. A proc-block which takes a rank 4 `tensor` as input, whose dimension is of this form `[1, x, y, z]`. It will return:
+This proc-block is useful in image segmentation. A proc-block which takes a rank
+4 `tensor` as input, whose dimension is of this form `[1, x, y, z]`. It will
+return:
+
 -  a 2-d `tensor` after performing argmax along the axis-3 of the tensor
 - a 1-d `tensor` which a `set` of all the number present in the above 2-d `tensor`
 
-We use this in [deep_lab rune](https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/image/deep_labv3/Runefile.yml#L29).
+We use this in [the `deep_lab` rune][deep-lab].
 
 ### 12. softmax
 
 A proc-block which apply softmax function over the tensor list.
 
-### 13. tokenizers 
+### 13. tokenizers
 
-This proc-block is helpful in the NLP models. Tokenization is a way of separating a piece of text into smaller units called tokens. E.g. bert tokenizer
+This proc-block is helpful in the NLP models. Tokenization is a way of
+separating a piece of text into smaller units called tokens (e.g. bert tokenizer).
+
 ```
 tokens: ['[CLS]', 'this', 'is', 'a', 'nice', 'sentence', '.', '[SEP]']
 input_ids: [101, 2023, 2003, 1037, 3835, 6251, 1012, 102]
 ```
 
-we use this in [bert rune](https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/nlp/bert/Runefile.yml#L21). You can find more details in our [article](https://tinyverse.substack.com/p/runebert-nlp-on-the-edge).
+we use this in [bert rune][bert-tokenizer]. You can find more details in our
+[article][bert-article].
 
 ### 14. utf8_decode
 
@@ -244,8 +293,30 @@ pipeline:
     inputs:
       - utf8_decode
 ```
-After building a rune using above Runefile run `rune run test.rune --raw input.txt`, where input .txt contains `one two three four five`. You will get this as output.
+
+After building a rune using above Runefile run `rune run test.rune --raw
+input.txt`, where input .txt contains `one two three four five`. You will get
+this as output.
+
 ```
 {"type_name":"utf8","channel":1,"elements":["one two three four five"],"dimensions":[1]}
 ```
-The `capability` convert the input data to `u8` bytes so we can use this proc-block to convert them back to `utf8`
+
+The `capability` convert the input data to `u8` bytes so we can use this
+proc-block to convert them back to `utf8`
+
+[labels]: https://github.com/hotg-ai/tutorials/blob/16ac4c7f0c7e14435fe71dbad37a5534f15ea6dd/lessons/lesson-2/Runefile.yml#L38
+[label-pb]: https://github.com/hotg-ai/proc-blocks/tree/master/label
+[landmark]: https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_north_america_V1/1
+[proc-blocks]: https://github.com/hotg-ai/proc-blocks
+[bert]: https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/nlp/bert/Runefile.yml#L48
+[yamnet]: https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/audio/yamnet/Runefile.yml#L13
+[audio-article]: https://tinyverse.substack.com/p/rune-ifying-audio-models
+[microspeech]: https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/microspeech/Runefile.yml#L15
+[pb-in-ml]: https://tinyverse.substack.com/p/processing-blocks-in-a-machine-learning
+[sine]: https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/sine/Runefile.yml#L12
+[microspeech-noise]: https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/microspeech/Runefile.yml#L24
+[gesture]: https://github.com/hotg-ai/rune/blob/a0fa8563eadb9fd7254955e735671ff79e80824f/examples/gesture/Runefile.yml#L16
+[deep-lab]: https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/image/deep_labv3/Runefile.yml#L29
+[bert-tokenizer]: https://github.com/hotg-ai/test-runes/blob/d2fc9b83c8497f01420e505e81e85f9d7126bb11/nlp/bert/Runefile.yml#L21
+[bert-article]: https://tinyverse.substack.com/p/runebert-nlp-on-the-edge
