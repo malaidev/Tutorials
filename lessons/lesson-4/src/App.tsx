@@ -31,7 +31,7 @@ export default function App() {
           <form onSubmit={submit}>
             <div>
               <label>
-                Number:
+                Number: <br/>
                 <input type="number" value={number}
                   onChange={e => setNumber(parseInt(e.target.value))} />
               </label>
