@@ -20,7 +20,7 @@ export default function App() {
     if (!runtime) { return; }
 
     const result = evaluate(runtime, number);
-    setResult(JSON.stringify(result));
+    setResult(JSON.stringify(result, null, 4));
   };
 
   return (
@@ -41,7 +41,7 @@ export default function App() {
 
           <div>
             <h3>Result</h3>
-            <pre><code>{result}</code></pre>
+            <pre style={{textAlign: 'left', width: "50vw"}}>{result}</pre>
           </div>
         </div>
       </header>
