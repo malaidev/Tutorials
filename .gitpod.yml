@@ -4,6 +4,11 @@ tasks:
     command: unzip rune.x86_64-unknown-linux-gnu.zip && mv rune ~/.cargo/bin && cd ~/.cargo/bin && chmod +x rune && cd /workspace/tutorials && clear
   - init: pip3 install numpy Pillow
     command: echo "ready"
+  - init: sudo apt-get install -y unzip wget
+    command: wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && unzip ngrok-stable-linux-amd64.zip && sudo chmod +x ngrok && sudo mv ngrok /usr/local/bin/ && rm ngrok-stable-linux-amd64.zip
+  - init: curl -OL https://github.com/hotg-ai/rune-serve/releases/download/hackathon/rune-serve-linux-amd64.zip && unzip rune-serve-linux-amd64.zip && sudo chmod +x rune-serve && sudo mv rune-serve /usr/local/bin/ && rm rune-serve-linux-amd64.zip
+    command: echo "Rune serve ready"
+  
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
