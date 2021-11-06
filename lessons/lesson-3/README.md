@@ -297,7 +297,9 @@ rune run lesson-3.rune --image style.jpeg content.jpeg
 ```
 
 You will get an image matrix as output. Now, you can use some external libraries
-to convert an image matrix to an image. You can also use our pan code to convert
-this matrix into an image. We will cover how to use it in the coming lessons.
+to convert an image matrix to an image. You can also use external libraries to
+convert this matrix into an image. See a python example below:
 
-[norm]: https://github.com/hotg-ai/proc-blocks/tree/master/image-normalization
+```bash
+rune run lesson-3.rune --image style.jpeg content.jpeg | python make-image.py
+```
