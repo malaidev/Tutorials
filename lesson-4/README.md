@@ -108,7 +108,7 @@ We want this Rune to be accessible from the web app so we'll tell `rune build`
 to save it to the `public/` folder.
 
 ```console
-$ rune build -o public/lesson-4.rune
+$ rune build Runefile.yml -o public/lesson-4.rune
    Compiling lesson-4 v0.0.0 (~/.cache/runes/lesson-4)
     Finished release [optimized] target(s) in 0.14s
 $ ls public
