@@ -42,4 +42,4 @@ The following types of quantization are available in TensorFlow Lite:
 
 We will use an MNIST dataset example to show you how to quantize a model.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hotg-ai/tutorials/blob/main/lesson-7/Quantization_of_TF_model.ipynb)
+[![Open In Colab](https://colab.research.google.com/drive/1t95OqbYdZz5i_uAW_U9rtKe06dPZ3SKK?usp=sharing)
